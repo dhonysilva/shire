@@ -11,7 +11,10 @@ config :spark, formatter: ["Ash.Resource": [section_order: [:postgres]]]
 
 config :shire,
   ecto_repos: [Shire.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [Shire.Accounts]
+
+config :shire, ash_domains: [Shire.Accounts]
 
 # Configures the endpoint
 config :shire, ShireWeb.Endpoint,
