@@ -14,8 +14,6 @@ config :shire,
   generators: [timestamp_type: :utc_datetime],
   ash_domains: [Shire.Support, Shire.Accounts]
 
-config :shire, ash_domains: [Shire.Accounts]
-
 # Configures the endpoint
 config :shire, ShireWeb.Endpoint,
   url: [host: "localhost"],
