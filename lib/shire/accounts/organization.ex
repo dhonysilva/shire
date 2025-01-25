@@ -16,6 +16,7 @@ defmodule Shire.Accounts.Organization do
   multitenancy do
     strategy(:attribute)
     attribute(:id)
+    global?(true)
   end
 
   postgres do

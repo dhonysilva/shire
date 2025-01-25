@@ -7,7 +7,7 @@ defmodule Shire.Accounts do
   resources do
     resource Organization do
       define(:create_organization, action: :create)
-      define(:list_organization, action: :read)
+      define(:list_organizations, action: :read)
     end
   end
 end
