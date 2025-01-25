@@ -2,7 +2,12 @@ defmodule Shire.Accounts do
   use Ash.Domain,
     otp_app: :shire
 
+  alias Shire.Accounts.Organization
+
   resources do
-    resource(Shire.Accounts.Organization)
+    resource Organization do
+      define(:create_organization, action: :create)
+      define(:list_organization, action: :read)
+    end
   end
 end

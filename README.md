@@ -17,14 +17,10 @@ For this current project, we're utilizing the `:attribute` strategy described [h
 This strategy implies that each tenant has an attribute `organization_id` that is used to filter the data.
 
 
-
-
-
 ## Learn more
 I walked through the official Ash Multitenacy documentation while developing this project:
 
 https://hexdocs.pm/ash/multitenancy.html
-
 
 
 ### Setting up the project
