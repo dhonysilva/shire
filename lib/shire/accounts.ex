@@ -3,5 +3,6 @@ defmodule Shire.Accounts do
     otp_app: :shire
 
   resources do
+    resource(Shire.Accounts.Organization)
   end
 end
