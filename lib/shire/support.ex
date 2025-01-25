@@ -3,5 +3,6 @@ defmodule Shire.Support do
     otp_app: :shire
 
   resources do
+    resource(Shire.Support.Ticket)
   end
 end
