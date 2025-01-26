@@ -14,6 +14,7 @@ defmodule Shire.Support do
     end
 
     resource Representative do
+      define(:create_representative, action: :create)
     end
   end
 end

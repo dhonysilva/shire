@@ -50,7 +50,7 @@ I walked through the official Ash Multitenacy documentation while developing thi
 https://hexdocs.pm/ash/multitenancy.html
 
 
-Kamaro Lambert [(visit the project here)](https://github.com/kamaroly/helpdesk) provided two outstanding tutorials on how to work with Multitenancy utilizing the `:context` strategy and I used all of the instrunctions he provided to build this project. Here are the links to the tutorials:
+Kamaro Lambert [(visit the project here)](https://github.com/kamaroly/helpdesk) has provided two outstanding tutorials on how to work with Multitenancy utilizing the `:context` strategy and I used all of the instrunctions he provided to build this project. Here are the links to the tutorials:
 
 - [Part 01](https://medium.com/@lambert.kamaro/how-to-build-a-saas-using-phoenix-and-ash-framework-1-4-69f3a622470d)
 - [Part 02](https://medium.com/@lambert.kamaro/how-to-build-a-saas-using-phoenix-and-ash-framework-2-4-41ccbb8003fe)
@@ -107,4 +107,22 @@ And also
 
 ```elixir
 Shire.Support.Ticket |> Ash.Query.filter(status == :close and not(contains(subject, "5"))) |> Ash.read!(tenant: "6b44e248-2011-465c-b52e-bf94c7baa950")
+```
+
+### Dealig with building artifacts problems
+
+Sometimes there's some incompatibilies with the files on `_build` folder. In this case, proceed with one of the steps below.
+
+Clear and recompile modules with:
+
+```bash
+mix compile --force
+```
+
+Clear build artifacts and compile:
+
+```bash
+rm -rf _build
+mix deps.compile
+mix compile
 ```

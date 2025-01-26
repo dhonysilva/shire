@@ -26,4 +26,23 @@ defmodule Shire.Support.Representative do
     has_many :tickets, Shire.Support.Ticket
     belongs_to :organization, Shire.Accounts.Organization
   end
+
+  aggregates do
+    count(:total_tickets, :tickets)
+
+    count :open_tickets, :tickets do
+      filter(expr(status == :open))
+    end
+
+    count :closed_tickets, :tickets do
+      filter(expr(status == :closed))
+    end
+  end
+
+  # We can fetch the percent_open calculation by using the following query:
+  # Shire.Support.Representative |> Ash.Query.filter(percent_open > 0.25) |> Ash.Query.sort(:percent_open) |> Ash.Query.load(:percent_open) |> Ash.read!()
+
+  calculations do
+    calculate(:percent_open, :float, expr(open_tickets / total_tickets))
+  end
 end
