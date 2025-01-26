@@ -1,4 +1,4 @@
-# Shire
+# Shire, multitenacy application with Ash Framework
 
 Application created during the process of learning how to develop applications utilizing the multitenacy capability with Ash Framework.
 

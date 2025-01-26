@@ -13,6 +13,10 @@ defmodule Shire.Support.Ticket do
       accept([:subject])
     end
 
+    update :assign do
+      accept([:representative_id])
+    end
+
     update :update do
       accept([:subject])
     end
@@ -53,5 +57,6 @@ defmodule Shire.Support.Ticket do
 
   relationships do
     belongs_to :organization, Shire.Accounts.Organization
+    belongs_to :representative, Shire.Support.Representative
   end
 end

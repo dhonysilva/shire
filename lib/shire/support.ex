@@ -3,6 +3,7 @@ defmodule Shire.Support do
     otp_app: :shire
 
   alias Shire.Support.Ticket
+  alias Shire.Support.Representative
 
   resources do
     resource Ticket do
@@ -12,6 +13,7 @@ defmodule Shire.Support do
       define(:update_ticket, action: :update)
     end
 
-    resource(Shire.Support.Representative)
+    resource Representative do
+    end
   end
 end
