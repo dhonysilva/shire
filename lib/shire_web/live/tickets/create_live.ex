@@ -7,6 +7,7 @@ defmodule ShireWeb.Tickets.CreateLive do
   def render(assigns) do
     ~H"""
     <.header>Open Ticket</.header>
+    <.back navigate={~p"/tickets"}>Go back to tickets</.back>
     <.simple_form for={@form} phx-submit="save" phx-change="validate" id="ticket-form">
       <.input field={@form[:subject]} label="New Ticket Subject" />
       <.input
