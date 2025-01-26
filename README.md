@@ -18,7 +18,7 @@ This strategy implies that each tenant has an attribute `organization_id` that i
 
 The Ticket resource thas the `organization_id` Foreign Key, which is used to determine which tenant it belongs to.
 
-```
+```sql
 select * from tickets;
 ```
 
@@ -33,7 +33,7 @@ select * from tickets;
 
 Each organization represents one tenant on the application. The organizations table has the following structure:
 
-```
+```sql
 select * from organizations;
 ```
 
@@ -68,3 +68,43 @@ The two routes available are:
   * [`localhost:4000/tickets/`](http://localhost:4000/tickets/)
 
   * [`localhost:4000/tickets/open`](http://localhost:4000/tickets/open)
+
+### Working with data
+
+Once you open the application, you can create organizations and tickets.
+
+On the IEx console, you can create organizations by running the following commands:
+
+```elixir
+Shire.Accounts.create_organization(%{name: "Tenant 03", domain: "tenant_03"})
+```
+
+
+There are two ways to create a ticket with the IEx console:
+
+
+```elixir
+Shire.Support.Ticket
+|> Ash.Changeset.for_create(:open, %{subject: "Config the printer"})
+|> Ash.Changeset.set_tenant("9e1c0c0a-id-organization")
+|> Ash.create!()
+```
+
+Or
+```elixir
+Shire.Support.open_ticket(%{subject: "Broken cable"}, tenant: "9e1c0c0a-id-organization")
+```
+
+### Fetching data
+
+Some ways to fetch data from Tickets:
+
+```elixir
+Shire.Support.Ticket |> Ash.Query.filter(contains(subject, "5")) |> Ash.read!(tenant: "6b44e248-2011-465c-b52e-bf94c7baa950")
+```
+
+And also
+
+```elixir
+Shire.Support.Ticket |> Ash.Query.filter(status == :close and not(contains(subject, "5"))) |> Ash.read!(tenant: "6b44e248-2011-465c-b52e-bf94c7baa950")
+```
