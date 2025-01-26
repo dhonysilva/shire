@@ -11,5 +11,7 @@ defmodule Shire.Support do
       define(:list_tickets, action: :read)
       define(:update_ticket, action: :update)
     end
+
+    resource(Shire.Support.Representative)
   end
 end
