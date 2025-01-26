@@ -16,6 +16,16 @@ defmodule Shire.Support.Ticket do
     update :update do
       accept([:subject])
     end
+
+    update :close do
+      accept([])
+
+      validate(attribute_does_not_equal(:status, :close)) do
+        message("Ticket is already closed")
+      end
+
+      change(set_attribute(:status, :close))
+    end
   end
 
   multitenancy do

@@ -13,7 +13,7 @@ defmodule ShireWeb.Tickets.CreateLive do
         field={@form[:tenant]}
         type="select"
         label="Select Tenant"
-        options={Enum.map(@organizations, fn tenant -> {tenant.name, tenant.domain} end)}
+        options={Enum.map(@organizations, fn tenant -> {tenant.name, tenant.id} end)}
       />
       <:actions>
         <.button>Open</.button>
@@ -46,7 +46,7 @@ defmodule ShireWeb.Tickets.CreateLive do
 
     case Form.submit(form, params: form_attrs) do
       {:ok, _item} ->
-        {:noprely, put_flash(socket, :info, "Ticket opened")}
+        {:noreply, put_flash(socket, :info, "Ticket opened")}
 
       {:error, form} ->
         {:noreply, assign(socket, :form, form)}

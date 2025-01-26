@@ -20,6 +20,7 @@ defmodule ShireWeb.Router do
     get "/", PageController, :home
 
     scope "/tickets", Tickets do
+      live "/", ListLive
       live "/open", CreateLive
     end
   end
