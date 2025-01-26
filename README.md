@@ -1,9 +1,9 @@
 # Shire
 
-Application created during the process of learning how to develop applications utlizing the multitenacy capability with Ash Framework.
+Application created during the process of learning how to develop applications utilizing the multitenacy capability with Ash Framework.
 
 
-In other project we studied the `:context` strategy, which uses postgres schemas where each tenant has its own database schema. On this strategy We can fetch the data from each tenant by using the schema name as a prefix. For example, to fetch the tickets from tenant_01, tenant_02 e tenant_03 we can run the following query:
+In other project we studied the `:context` strategy, which uses postgres schemas where each tenant has its own database schema. On this strategy we can fetch data from each tenant by using the schema name as a prefix. For example, to fetch the tickets from tenant_01, tenant_02 e tenant_03 we can run the following query:
 
 ```sql
 select * from tenant_01.tickets;

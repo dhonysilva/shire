@@ -8,6 +8,7 @@ defmodule Shire.Support do
     resource Ticket do
       define(:open_ticket, action: :open)
       define(:list_tickets, action: :read)
+      define(:update_ticket, action: :update)
     end
   end
 end

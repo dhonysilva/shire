@@ -18,6 +18,10 @@ defmodule ShireWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    scope "/tickets", Tickets do
+      live "/open", CreateLive
+    end
   end
 
   # Other scopes may use custom stacks.

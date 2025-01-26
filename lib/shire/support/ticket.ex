@@ -12,6 +12,10 @@ defmodule Shire.Support.Ticket do
     create :open do
       accept([:subject])
     end
+
+    update :update do
+      accept([:subject])
+    end
   end
 
   multitenancy do
