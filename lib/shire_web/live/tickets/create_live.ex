@@ -16,6 +16,7 @@ defmodule ShireWeb.Tickets.CreateLive do
         label="Select Tenant"
         options={Enum.map(@organizations, fn tenant -> {tenant.name, tenant.id} end)}
       />
+
       <:actions>
         <.button>Open</.button>
       </:actions>

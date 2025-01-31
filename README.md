@@ -109,7 +109,7 @@ And also
 Shire.Support.Ticket |> Ash.Query.filter(status == :close and not(contains(subject, "5"))) |> Ash.read!(tenant: "6b44e248-2011-465c-b52e-bf94c7baa950")
 ```
 
-### Dealig with building artifacts problems
+### Dealing with building artifacts problems
 
 Sometimes there's some incompatibilies with the files on `_build` folder. In this case, proceed with one of the steps below.
 
