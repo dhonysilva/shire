@@ -59,6 +59,7 @@ Kamaro Lambert [(visit the project here)](https://github.com/kamaroly/helpdesk) 
 To start this Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
+  * Run mix `mix ash.setup` to create the database and run the migrations.
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
@@ -76,9 +77,52 @@ Once you open the application, you can create organizations and tickets.
 On the IEx console, you can create organizations by running the following commands:
 
 ```elixir
-Shire.Accounts.create_organization(%{name: "Tenant 03", domain: "tenant_03"})
+Shire.Accounts.create_organization(%{name: "Tenant_01", domain: "tenant_01"})
 ```
 
+We will receive the following response:
+
+```elixir
+{:ok,
+ #Shire.Accounts.Organization<
+   __meta__: #Ecto.Schema.Metadata<:loaded, "organizations">,
+   id: "912b94c9-2990-427a-824d-1d6fb9b956c3",
+   name: "Tenant_01",
+   domain: "tenant_01",
+   went_live_at: nil,
+   email_domains: [],
+   inserted_at: ~U[2025-02-02 13:04:48.916403Z],
+   updated_at: ~U[2025-02-02 13:04:48.916403Z],
+   aggregates: %{},
+   calculations: %{},
+   ...
+ >}
+ ```
+
+To list all organizations, run the following command:
+
+```elixir
+iex(2)> Shire.Accounts.list_organizations()
+[debug] QUERY OK source="organizations" db=1.5ms queue=3.4ms idle=258.4ms
+SELECT o0."id", o0."name", o0."domain", o0."email_domains", o0."inserted_at", o0."updated_at", o0."went_live_at" FROM "organizations" AS o0 []
+↳ anonymous fn/3 in AshPostgres.DataLayer.run_query/2, at: lib/data_layer.ex:785
+{:ok,
+ [
+   #Shire.Accounts.Organization<
+     __meta__: #Ecto.Schema.Metadata<:loaded, "organizations">,
+     id: "912b94c9-2990-427a-824d-1d6fb9b956c3",
+     name: "Tenant_01",
+     domain: "tenant_01",
+     went_live_at: nil,
+     email_domains: [],
+     inserted_at: ~U[2025-02-02 13:04:48.916403Z],
+     updated_at: ~U[2025-02-02 13:04:48.916403Z],
+     aggregates: %{},
+     calculations: %{},
+     ...
+   >
+ ]}
+```
 
 There are two ways to create a ticket with the IEx console:
 
