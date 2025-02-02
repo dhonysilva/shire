@@ -3,10 +3,18 @@ defmodule ShireWeb.Tickets.CreateLivetest do
   import Phoenix.LiveViewTest
   # ← It deserve more atention. To study more.
 
+  def goto_page(conn) do
+    live(conn, ~p"/tickets/open")
+  end
+
+  def create_tenant do
+    Shire.Accounts.create_organization(%{name: "Tenant 1", domain: "tenant 1"})
+  end
+
   describe "Create Ticket" do
     test "User should see open ticket form when visiting /tickets/open", %{conn: conn} do
       # 1. Go to /tickets/open
-      {:ok, view, html} = live(conn, ~p"/tickets/open")
+      {:ok, view, html} = goto_page(conn)
 
       # 2. See the "Open Ticket" text on the page
       assert html =~ "Open Ticket"
@@ -23,10 +31,10 @@ defmodule ShireWeb.Tickets.CreateLivetest do
 
     test "User should see erros while trying to submit invalid data", %{conn: conn} do
       # 1. Create an organization to test with
-      {:ok, tenant} = Shire.Accounts.create_organization(%{name: "Tenant 1", domain: "tenand_1"})
+      {:ok, tenant} = create_tenant()
 
       # 2. Go to /tickets/open page
-      {:ok, view, _html} = live(conn, ~p"/tickets/open")
+      {:ok, view, _html} = goto_page(conn)
 
       # 3. Submit invalid form
       invalid_form = %{subject: "", tenant: tenant.id}
@@ -42,11 +50,10 @@ defmodule ShireWeb.Tickets.CreateLivetest do
 
     test "User should successfully open a ticket with valid data", %{conn: conn} do
       # 1. Create and organization
-      {:ok, organization} =
-        Shire.Accounts.create_organization(%{name: "Tenant 1", domain: "tenant_1"})
+      {:ok, organization} = create_tenant()
 
       # 2. Go to /tickets/open page
-      {:ok, view, _html} = live(conn, ~p"/tickets/open")
+      {:ok, view, _html} = goto_page(conn)
 
       # 3. Fill the subject and submit the form
       form = %{subject: "Desktop not starting", tenant: organization.id}
