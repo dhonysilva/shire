@@ -33,6 +33,7 @@ defmodule Shire.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:mix_test_watch, "~> 1.2"},
       {:ash_phoenix, "~> 2.0"},
       {:ash_postgres, "~> 2.0"},
       {:ash, "~> 3.0"},
