@@ -41,7 +41,26 @@ defmodule ShireWeb.Tickets.CreateLivetest do
     end
 
     test "User should successfully open a ticket with valid data", %{conn: conn} do
-      # List here
+      # 1. Create and organization
+      {:ok, organization} =
+        Shire.Accounts.create_organization(%{name: "Tenant 1", domain: "tenant_1"})
+
+      # 2. Go to /tickets/open page
+      {:ok, view, _html} = live(conn, ~p"/tickets/open")
+
+      # 3. Fill the subject and submit the form
+      form = %{subject: "Desktop not starting", tenant: organization.id}
+      html = view |> form("#ticket-form", form: form) |> render_submit()
+
+      # 4. Expect to not see the error message on the page
+      refute html =~ "is required"
+      assert html =~ "Ticket opened"
+
+      # 5. Expect data to be stored in the right tenant in the database
+      {:ok, tickets} = Shire.Support.list_tickets(tenant: organization.id)
+      ticket = Enum.at(tickets, 0)
+      assert = Enum.count(tickets) == 1
+      assert ticket.subject == form.subject
     end
   end
 end
