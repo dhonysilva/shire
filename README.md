@@ -43,6 +43,27 @@ select * from organizations;
 | b948c8a3   | Tenant 02 | tenant_02  |
 
 
+We can see the relationship between these tables here:
+
+
+```mermaid
+erDiagram
+    tickets {
+        int id
+        string subject
+        string status
+        int organizations_id
+    }
+
+    organizations {
+        int id
+        string name
+        string domain
+    }
+
+    tickets }o--|| organizations : "belongs to"
+
+```
 
 ## Learn more
 I walked through the official Ash Multitenacy documentation while developing this project.
